@@ -1,57 +1,73 @@
-public class Book {
+package org.example;
 
-    // TODO: make fields private
-    private String title;
-    private String author;
-    private int year;
+import java.util.Scanner;
+
+public class Book {
+    private final String title;
+    private final String author;
+    private final int year;
     private boolean isAvailable;
 
-    // TODO: Implement parameterized constructor
     public Book(String title, String author, int year) {
-        // implement
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.isAvailable = true;
     }
 
-    // TODO: Implement copy constructor
     public Book(Book other) {
-        // implement
+        this.title = other.title;
+        this.author = other.author;
+        this.year = other.year;
+        this.isAvailable = other.isAvailable;
     }
 
-    // TODO: Implement getters
     public String getTitle() {
-        return null;
+        return title;
     }
 
     public String getAuthor() {
-        return null;
+        return author;
     }
 
     public int getYear() {
-        return 0;
+        return year;
     }
 
     public boolean isAvailable() {
-        return false;
+        return isAvailable;
     }
 
-    // TODO: Implement borrow logic
     public void borrowBook() {
-        // implement
+        if (isAvailable) {
+            isAvailable = false;
+            System.out.println("📕 Book borrowed successfully.");
+        } else {
+            System.out.println("❌ Book is already borrowed.");
+        }
     }
 
-    // TODO: Implement return logic
     public void returnBook() {
-        // implement
+        isAvailable = true;
+        System.out.println("📗 Book returned successfully.");
     }
 
-    // TODO: Override toString()
     @Override
     public String toString() {
-        return "";
+        return "Title: " + title +
+                ", Author: " + author +
+                ", Year: " + year +
+                ", Available: " + isAvailable;
     }
 
-    // TODO: Override equals()
     @Override
     public boolean equals(Object obj) {
-        return false;
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Book other = (Book) obj;
+        return title.equals(other.title)
+                && author.equals(other.author)
+                && year == other.year;
     }
 }
